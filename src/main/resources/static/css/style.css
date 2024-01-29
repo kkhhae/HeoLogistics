@@ -1,6 +1,7 @@
 /********** Template CSS **********/
+
 :root {
-    --primary: #FF3E41;
+    --primary: #0080ff;
     --secondary: #51CFED;
     --light: #F8F2F0;
     --dark: #060315;
@@ -220,7 +221,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(6, 3, 21, .5), rgba(6, 3, 21, .5)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(6, 3, 21, .5), rgba(6, 3, 21, .5)), url(../img/main1.jpg) center center no-repeat;
     background-size: cover;
 }
 
@@ -419,7 +420,7 @@
 
 /*** Footer ***/
 .footer {
-    background: linear-gradient(rgba(6, 3, 21, .5), rgba(6, 3, 21, .5)), url(../img/map.png) center center no-repeat;
+    /*background: linear-gradient(rgba(6, 3, 21, .5), rgba(6, 3, 21, .5)), url(../img/map.png) center center no-repeat;*/
     background-size: cover;
 }
 
