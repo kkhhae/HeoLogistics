@@ -11,4 +11,9 @@ public class MainController {
     public String Main(){
         return "index.html";
     }
+
+    @GetMapping("/normalDelivery")
+    public String normalDelivery(){
+        return "normalDelivery.html";
+    }
 }
