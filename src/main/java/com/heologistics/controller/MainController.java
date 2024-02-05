@@ -20,8 +20,8 @@ public class MainController {
     public String quickDelivery(){
         return "quickDelivery.html";
     }
-    @GetMapping("/packingDelivery")
-    public String packingDelivery(){
-        return "packingDelivery.html";
+    @GetMapping("/hugeDelivery")
+    public String hugeDelivery(){
+        return "hugeDelivery.html";
     }
 }
