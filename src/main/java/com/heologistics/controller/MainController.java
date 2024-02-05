@@ -16,4 +16,8 @@ public class MainController {
     public String normalDelivery(){
         return "normalDelivery.html";
     }
+    @GetMapping("/quickDelivery")
+    public String quickDelivery(){
+        return "quickDelivery.html";
+    }
 }
