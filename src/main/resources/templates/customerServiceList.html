@@ -54,19 +54,19 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="/" class="nav-item nav-link">홈</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">운송</a>
+                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">운송</a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href="/normalDelivery" class="dropdown-item active">일반 운송</a>
+                        <a href="/normalDelivery" class="dropdown-item">일반 운송</a>
                         <a href="/quickDelivery" class="dropdown-item">퀵 배송</a>
                         <a href="/hugeDelivery" class="dropdown-item">대형 운송</a>
                         <a href="#" id="backLink" class="dropdown-item">기타 운송</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">고객센터</a>
+                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">고객센터</a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href="/customerService" class="dropdown-item">문의</a>
-                        <a href="/customerServiceList" class="dropdown-item">목록</a>
+                        <a href="/customerService" class="dropdown-item ">문의</a>
+                        <a href="/customerServiceList" class="dropdown-item active">목록</a>
                     </div>
                 </div>
             </div>
@@ -77,49 +77,30 @@
     <!-- Header Start -->
     <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
         <div class="container py-5" style="text-align: center;">
-            <h1 class="display-3 text-white mb-3 ">일반 배송</h1>
+            <h1 class="display-3 text-white mb-3 ">고객센터 문의 목록</h1>
         </div>
     </div>
     <!-- Header End -->
 
 
     <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-6 " data-wow-delay="0.5s">
-                    <div class="service-item p-4">
-                        <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="/img/vehicle/1t카고.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 " data-wow-delay="0.7s">
-                    <div class="service-item p-4" style="height: 100%;">
-                        <h4 class="mb-3">1t 트럭-카고</h4>
-                        <p>대중적인 차량으로 저희 회사에서는 주로 이사, 장비, 화물 등의 운반에 사용합니다.</p>
-                        <br><br><br>
-                        <button class="btn-dark" href="#">신청하기</button>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-6" data-wow-delay="0.5s">
-                    <div class="service-item p-4">
-                        <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="/img/vehicle/1t탑차.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6" data-wow-delay="0.7s">
-                    <div class="service-item p-4" style="height: 100%;">
-                        <h4 class="mb-3">1t 트럭-탑차</h4>
-                        <p>대중적인 차량으로 저희 회사에서는 주로 식품(육류, 해산물, 냉동 등), 손상되기 쉬운 물품을 운반합니다</p>
-                        <br><br><br><br><br>
-                        <button class="btn-dark" href="#">신청하기</button>
-                    </div>
-                </div>
+    <div class="container py-5">
+        <h2 class="text-center mb-4">문의 목록</h2>
+
+        <div class="row">
+            <div class="col-md-12 offset-md">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h5 class="mb-1">문의 제목1</h5>
+                        <p class="mb-1">문의 내용1</p>
+                        <small class="text-muted">문의 시간: 2024-02-15 10:30 AM</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h5 class="mb-1">문의 제목2</h5>
+                        <p class="mb-1">문의 내용2</p>
+                        <small class="text-muted">문의 시간: 2024-02-14 03:45 PM</small>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

@@ -26,4 +26,14 @@ public class MainController {
     public String hugeDelivery() {
         return "hugeDelivery.html";
     }
+
+    @GetMapping("/customerService")
+    public String customerService() {
+        return "customerService.html";
+    }
+
+    @GetMapping("/customerServiceList")
+    public String customerServiceList() {
+        return "customerServiceList.html";
+    }
 }
