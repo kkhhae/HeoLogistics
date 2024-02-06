@@ -36,4 +36,10 @@ public class MainController {
     public String customerServiceList() {
         return "customerServiceList.html";
     }
+    @GetMapping("/requestService")
+    public String requestService() {
+        return "requestService.html";
+    }
+
+
 }
