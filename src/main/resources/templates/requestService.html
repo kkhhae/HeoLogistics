@@ -199,7 +199,45 @@
 
     <!-- After Map Searching -->
 
-   
+    <script>
+        //카카오 길찾기로 거리 측정하기
+        // REST API 키
+        var REST_API_KEY = 'db120219b31c21d672790becddbc93d6';
+
+        // 시작점과 도착점 좌표
+        var origin = '127.11015314141542,37.39472714688412';
+        var destination = '127.10824367964793,37.401937080111644';
+
+        // API 요청 URL
+        var apiUrl = 'https://apis-navi.kakaomobility.com/v1/directions?' +
+            'origin=' + origin +
+            '&destination=' + destination +
+            '&waypoints=' +
+            '&priority=RECOMMEND' +
+            '&car_fuel=GASOLINE' +
+            '&car_hipass=false' +
+            '&alternatives=false' +
+            '&road_details=false';
+
+        // AJAX 요청 보내기
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', apiUrl, true);
+        xhr.setRequestHeader('Authorization', 'KakaoAK ' + REST_API_KEY);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response); // 응답 결과 출력
+                    // 여기서 응답 결과를 활용하여 필요한 작업을 수행할 수 있습니다.
+                } else {
+                    console.error('Request failed:', xhr.status);
+                }
+            }
+        };
+        xhr.send();
+
+    </script>
+
 
 
     <!-- Service End -->
