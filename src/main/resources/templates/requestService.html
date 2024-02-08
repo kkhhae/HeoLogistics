@@ -89,7 +89,7 @@
 
     <!-- Before Map Searching -->
     <div class="container-fluid overflow-hidden py-2 px-lg-0">
-        <div class="container about py-5 px-lg-0">
+        <div class="container about py-2 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-9 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
@@ -179,18 +179,66 @@
                     <a href="javascript:void(0);" class="btn btn-primary mb-3" onclick="findPostCode()">주소 찾기</a>
                     <br>
                     <label for="address"></label>
-                    <input class="mb-1" type="text" id="address" placeholder="주소">
+                    <input class="row " type="text" id="address" placeholder="주소">
                     <label for="addressDetail"></label>
-                    <input class="mb-1" type="text" id="addressDetail" placeholder="상세 주소">
+                    <input class="row " type="text" id="addressDetail" placeholder="상세 주소">
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-12 about-text wow fadeInUp" data-wow-delay="0.3s">
-        <a class="btn btn-primary" style="width: 80%; ">주소 입력 완료 시 조회를 눌러주세요!</a>
+    <div class="col-lg-12 py-1 px-lg-0 about-text wow fadeInUp" data-wow-delay="0.3s">
+        <a class="btn btn-primary" style="width:100%; text-align: center;"
+           onclick="findAddressAndNavigate()">주소 입력 완료 시 조회를 눌러주세요!</a>
     </div>
+
     <!-- After Map Searching -->
 
+    <!-- 검색한 위치와 회사까지의 거리 측정(카카오네비) -->
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+            integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8" crossorigin="anonymous"></script>
+
+    <script>
+        Kakao.init('f4b4cf161070cc8f00fb099ef7376f01'); // 사용하려는 앱의 JavaScript 키 입력
+
+        function findAddressAndNavigate() {
+            var address = document.getElementById("address").value; // 사용자가 입력한 주소 가져오기
+
+            // AJAX를 이용하여 서버에 주소를 전송하고 좌표값을 받아오는 요청
+            $.ajax({
+                url: 'http://localhost:8080/requestService',
+                type: 'POST',
+                dataType: 'json',
+                data: { address: address },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        var coords = new kakao.maps.LatLng(response.latitude, response.longitude); // 입력한 주소의 좌표값
+
+                        // 회사의 건물 위치 좌표값
+                        var companyCoords = new kakao.maps.LatLng(37.491486, 127.032161);
+
+                        // 두 지점 간의 거리 계산
+                        var distance = kakao.maps.geometry.distance(coords, companyCoords);
+
+                        // 거리를 콘솔에 출력 (실제로는 사용자에게 보여줄 수 있도록 화면에 표시하는 등의 처리가 필요)
+                        console.log("거리:", distance);
+
+                        // 카카오 네비를 이용하여 길 안내 시작(예시 - 우편번호검색에서 좌표값 얻어오기)
+                        Kakao.Navi.start({
+                            name: '현대백화점 판교점',
+                            x: 127.11205203011632,
+                            y: 37.39279717586919,
+                            coordType: 'wgs84',
+                        });
+                    } else {
+                        alert("주소를 처리할 수 없습니다.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("서버 요청 실패:", error);
+                }
+            });
+        }
+    </script>
 
 
     <!-- Service End -->
