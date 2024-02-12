@@ -144,12 +144,14 @@
                                                 // 마커를 결과값으로 받은 위치로 옮긴다.
                                                 marker.setPosition(coords)
 
-
+                                                // 좌표값을 서버에 전송
+                                                sendAddressToServer(coords);
                                             }
                                         });
                                         console.log(addr);
                                     }
                                 }).open();
+
 
                             }
 
