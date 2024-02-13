@@ -180,11 +180,11 @@
             // 주소를 좌표로 변환(주소값으로 검색이 안되서 좌표변환)
             geocoder.addressSearch(address, function(results, status) {
                 if (status === daum.maps.services.Status.OK) {
-                    var coords = new daum.maps.LatLng(results[0].y, results[0].x);
+                    var coords = new daum.maps.LatLng(results[0].x, results[0].y);
                     var origin = coords.getLat() + ',' + coords.getLng(); // 출발지 좌표
 
                     // 목적지 좌표 설정 (회사건물)
-                    var destination = '37.491486,127.032161';
+                    var destination = '127.032161,37.491486';
                     console.log("출발지 좌표 : " + origin);
                     console.log("목적지 좌표 : " + destination);
 
@@ -198,7 +198,6 @@
                         '&car_hipass=false' +
                         '&alternatives=false' +
                         '&road_details=false';
-
                     console.log(apiUrl);
                     // AJAX 요청 보내기
                     var xhr = new XMLHttpRequest();
@@ -214,7 +213,7 @@
                             }
                         }
                     };
-                    console.log(xhr);
+
                     xhr.send();
 
                 } else {
