@@ -151,20 +151,18 @@
                                 }).open();
                             }
 
-
-
                         </script>
                     </div>
                 </div>
-                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s" style="text-align: center;">
                     <h6 class="text-secondary text-uppercase mb-3">거리 측정하기</h6>
                     <h2 class="mb-2">먼저 주소를 입력해주세요</h2>
                     <a href="javascript:void(0);" class="btn btn-primary mb-3" onclick="findPostCode()">주소 찾기</a>
                     <br>
                     <label for="address"></label>
-                    <input class="row" type="text" id="address" placeholder="주소" style="width:90%;">
+                    <input class="row" type="text" id="address" placeholder="주소" style="width:90%; margin: auto;">
                     <label for="addressDetail"></label>
-                    <input class="row " type="text" id="addressDetail" placeholder="상세 주소" style="width:90%;">
+                    <input class="row " type="text" id="addressDetail" placeholder="상세 주소" style="width:90%; margin: auto;">
                 </div>
             </div>
         </div>
@@ -175,48 +173,56 @@
     </div>
 
     <!-- After Map Searching -->
-
     <script>
-        //카카오 길찾기로 거리 측정하기
+        //카카오 길찾기로 거리 측정하는거
         function searchingService() {
             var address = document.getElementById('address').value;
-            var addressDetail = document.getElementById('addressDetail').value;
-            // 출발지와 목적지 좌표 설정
-            var origin = address + ' ' + addressDetail;
-            var destination = 'Heo로지스틱스';
+            // 주소를 좌표로 변환(주소값으로 검색이 안되서 좌표변환)
+            geocoder.addressSearch(address, function(results, status) {
+                if (status === daum.maps.services.Status.OK) {
+                    var coords = new daum.maps.LatLng(results[0].y, results[0].x);
+                    var origin = coords.getLat() + ',' + coords.getLng(); // 출발지 좌표
 
-            // API 요청 URL
-            var apiUrl = 'https://apis-navi.kakaomobility.com/v1/directions?' +
-                'origin=' + origin +
-                '&destination=' + destination +
-                '&waypoints=' +
-                '&priority=RECOMMEND' +
-                '&car_fuel=GASOLINE' +
-                '&car_hipass=false' +
-                '&alternatives=false' +
-                '&road_details=false';
+                    // 목적지 좌표 설정 (회사건물)
+                    var destination = '37.491486,127.032161';
+                    console.log("출발지 좌표 : " + origin);
+                    console.log("목적지 좌표 : " + destination);
 
-            // AJAX 요청 보내기
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', apiUrl, true);
-            xhr.setRequestHeader('Authorization', 'KakaoAK f4b4cf161070cc8f00fb099ef7376f01');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        console.log(response); // 응답 결과 출력
-                        // 여기서 응답 결과를 활용하여 필요한 작업을 수행할 수 있습니다.
-                    } else {
-                        console.error('Request failed:', xhr.status);
-                    }
+                    // API 요청 URL
+                    var apiUrl = 'https://apis-navi.kakaomobility.com/v1/directions?' +
+                        'origin=' + origin +
+                        '&destination=' + destination +
+                        '&waypoints=' +
+                        '&priority=RECOMMEND' +
+                        '&car_fuel=GASOLINE' +
+                        '&car_hipass=false' +
+                        '&alternatives=false' +
+                        '&road_details=false';
+
+                    console.log(apiUrl);
+                    // AJAX 요청 보내기
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', apiUrl, true);
+                    xhr.setRequestHeader('Authorization', 'KakaoAK db120219b31c21d672790becddbc93d6');//restapi
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                var response = JSON.parse(xhr.responseText);
+                                console.log(response); // 응답 결과 출력
+                            } else {
+                                console.error('Request failed:', xhr.status);
+                            }
+                        }
+                    };
+                    console.log(xhr);
+                    xhr.send();
+
+                } else {
+                    console.error('Geocode failed:', status);
                 }
-            };
-            xhr.send();
+            });
         }
-
     </script>
-
-
 
     <!-- Service End -->
 
