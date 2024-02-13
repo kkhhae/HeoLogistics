@@ -91,7 +91,7 @@
     <div class="container-fluid overflow-hidden py-2 px-lg-0">
         <div class="container about py-2 px-lg-0">
             <div class="row g-5 mx-lg-0">
-                <div class="col-lg-9 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <div id="map" style="width:100%;height:100%;"></div>
                         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4b4cf161070cc8f00fb099ef7376f01&libraries=services"></script>
@@ -144,99 +144,75 @@
                                                 // 마커를 결과값으로 받은 위치로 옮긴다.
                                                 marker.setPosition(coords)
 
-                                                // 좌표값을 서버에 전송
-                                                sendAddressToServer(coords);
                                             }
                                         });
                                         console.log(addr);
                                     }
                                 }).open();
-
-
                             }
 
-                            // Ajax 처리
-                            function sendAddressToServer(addr) {
-                                var xhr = new XMLHttpRequest();
-                                xhr.onreadystatechange = function() {
-                                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                                        if (xhr.status === 200) {
-                                            // 서버로부터 성공적인 응답을 받았을 때 추가적인 처리를 할 수 있음
-                                            console.log(xhr.responseText);
-                                        } else {
-                                            // 서버로부터 오류 응답을 받았을 때 처리할 내용
-                                            console.error('Request failed: ' + xhr.status);
-                                        }
-                                    }
-                                };
-                                xhr.open("POST", "http://localhost:8080/requestService", true);
-                                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                                var postData = {
-                                    address: addr,
-                                };
-                                xhr.send(JSON.stringify(postData));
 
-                            }
 
                         </script>
                     </div>
                 </div>
-                <div class="col-lg-3 about-text wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="text-secondary text-uppercase mb-3">거리 측정하기</h6>
                     <h2 class="mb-2">먼저 주소를 입력해주세요</h2>
                     <a href="javascript:void(0);" class="btn btn-primary mb-3" onclick="findPostCode()">주소 찾기</a>
                     <br>
                     <label for="address"></label>
-                    <input class="row " type="text" id="address" placeholder="주소">
+                    <input class="row" type="text" id="address" placeholder="주소" style="width:90%;">
                     <label for="addressDetail"></label>
-                    <input class="row " type="text" id="addressDetail" placeholder="상세 주소">
+                    <input class="row " type="text" id="addressDetail" placeholder="상세 주소" style="width:90%;">
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-12 py-1 px-lg-0 about-text wow fadeInUp" data-wow-delay="0.3s">
-        <a class="btn btn-primary" style="width:100%; text-align: center;"
-           onclick="findAddressAndNavigate()">주소 입력 완료 시 조회를 눌러주세요!</a>
+        <a class="btn btn-primary" style="width:100%; text-align: center; margin: auto;"
+           onclick="searchingService();">주소 입력 완료 시 조회를 눌러주세요!</a>
     </div>
 
     <!-- After Map Searching -->
 
     <script>
         //카카오 길찾기로 거리 측정하기
-        // REST API 키
-        var REST_API_KEY = 'db120219b31c21d672790becddbc93d6';
+        function searchingService() {
+            var address = document.getElementById('address').value;
+            var addressDetail = document.getElementById('addressDetail').value;
+            // 출발지와 목적지 좌표 설정
+            var origin = address + ' ' + addressDetail;
+            var destination = 'Heo로지스틱스';
 
-        // 시작점과 도착점 좌표
-        var origin = '127.11015314141542,37.39472714688412';
-        var destination = '127.10824367964793,37.401937080111644';
+            // API 요청 URL
+            var apiUrl = 'https://apis-navi.kakaomobility.com/v1/directions?' +
+                'origin=' + origin +
+                '&destination=' + destination +
+                '&waypoints=' +
+                '&priority=RECOMMEND' +
+                '&car_fuel=GASOLINE' +
+                '&car_hipass=false' +
+                '&alternatives=false' +
+                '&road_details=false';
 
-        // API 요청 URL
-        var apiUrl = 'https://apis-navi.kakaomobility.com/v1/directions?' +
-            'origin=' + origin +
-            '&destination=' + destination +
-            '&waypoints=' +
-            '&priority=RECOMMEND' +
-            '&car_fuel=GASOLINE' +
-            '&car_hipass=false' +
-            '&alternatives=false' +
-            '&road_details=false';
-
-        // AJAX 요청 보내기
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', apiUrl, true);
-        xhr.setRequestHeader('Authorization', 'KakaoAK ' + REST_API_KEY);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    console.log(response); // 응답 결과 출력
-                    // 여기서 응답 결과를 활용하여 필요한 작업을 수행할 수 있습니다.
-                } else {
-                    console.error('Request failed:', xhr.status);
+            // AJAX 요청 보내기
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', apiUrl, true);
+            xhr.setRequestHeader('Authorization', 'KakaoAK f4b4cf161070cc8f00fb099ef7376f01');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response); // 응답 결과 출력
+                        // 여기서 응답 결과를 활용하여 필요한 작업을 수행할 수 있습니다.
+                    } else {
+                        console.error('Request failed:', xhr.status);
+                    }
                 }
-            }
-        };
-        xhr.send();
+            };
+            xhr.send();
+        }
 
     </script>
 
