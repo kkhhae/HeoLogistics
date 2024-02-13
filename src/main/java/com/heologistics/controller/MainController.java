@@ -41,5 +41,10 @@ public class MainController {
         return "requestService.html";
     }
 
+    @GetMapping("/requestResult")
+    public String requestResult(){
+        return "requestResult.html";
+    }
+
 
 }
