@@ -225,11 +225,16 @@
 
         //다음페이지 넘기기 (뷰)
         function sendData(trans_id, routes) {
-            var dataToSend = {
+            var address = document.getElementById('address').value;
+            var addressDetail = document.getElementById('addressDetail').value;
+
+            var send = {
                 "trans_id": trans_id,
-                "routes": routes
+                "routes": routes,
+                "address": address,
+                "addressDetail": addressDetail
             };
-            localStorage.setItem('kakaoMapData', JSON.stringify(dataToSend));
+            localStorage.setItem('kakaoMapData', JSON.stringify(send));
 
             window.location.href = '/requestResult';
         }
