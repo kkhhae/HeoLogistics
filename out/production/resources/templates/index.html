@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HeoLogistics</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- 404 script-->
+    <script src="/js/backPage.js" defer></script>
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-1 border-primary sticky-top p-0">
+        <a href="/" class="navbar-brand bg-primary d-flex align-items-center px-4">
+            <img src="img/logo1.png" alt="" style="width: 100%; height:100%;">
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">홈</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">운송</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="/normalDelivery" class="dropdown-item">일반 운송</a>
+                        <a href="/quickDelivery" class="dropdown-item">퀵 배송</a>
+                        <a href="/hugeDelivery" class="dropdown-item">대형 운송</a>
+                        <a href="#" id="backLink" class="dropdown-item">기타 운송</a>
+                    </div>
+                </div>
+                <a href="/requestService" class="nav-item nav-link">신청</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">고객센터</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="/customerService" class="dropdown-item">문의</a>
+                        <a href="/customerServiceList" class="dropdown-item">목록</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 ">
+        <div class="owl-carousel header-carousel position-relative mb-5" style="height: 50%;">
+
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="/img/test.png" alt="" style="opacity: 0.5;">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+                                <h6 class="text-white text-uppercase mb-3 animated slideInDown">안녕하세요</h6>
+                                <h4 class="display-5 text-white animated slideInDown mb-4"> 국내 배송 서비스, <span class="text-primary">HEO</span> 입니다.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="/img/main2.jpg" alt="" style="opacity: 0.5;">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+                                <h6 class="text-white text-uppercase mb-3 animated slideInDown">안녕하세요</h6>
+                                <h4 class="display-5 text-white animated slideInDown mb-4"> 국내 배송 서비스, <span class="text-primary">HEO</span> 입니다.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid overflow-hidden py-2 px-lg-0">
+        <div class="container about py-5 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <div id="map" style="width:100%;height:100%;"></div>
+                        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4b4cf161070cc8f00fb099ef7376f01"></script>
+                        <script>
+                            // 맵 설정
+                            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                                mapOption = {
+                                    center: new kakao.maps.LatLng(37.491486, 127.032161), // 지도의 중심좌표
+                                    level: 4 // 지도의 확대 레벨
+                            };
+
+                            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                            // 마커 설정
+                            var markerPosition  = new kakao.maps.LatLng(37.491486, 127.032161);
+                            // 마커를 생성합니다
+                            var marker = new kakao.maps.Marker({
+                                position: markerPosition
+                            });
+                            // 마커가 지도 위에 표시되도록 설정합니다
+                            marker.setMap(map);
+
+                        </script>
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="text-secondary text-uppercase mb-3">위치 조회하기</h6>
+                    <h2 class="mb-5">현재 계신 위치와 근처의 회사 건물까지의 거리를 측정해드립니다.</h2>
+                    <div class="row g-4 mb-5">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                            <i class="fa fa-shipping-fast fa-3x text-primary mb-3"></i>
+                            <h5>강남역점</h5>
+                        </div>
+                    </div>
+                    <a href="/requestService" class="btn btn-primary py-3 px-5">신청하러 가기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Fact Start -->
+    <div class="container-xxl py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase mb-3">배송 서비스</h6>
+                    <h1 class="mb-5">물품의 안전에 최선을 다하겠습니다.</h1>
+                    <p class="mb-5">회사를 통한 해당 직원과 연결하여 배송정보 및 진행상황 등을 알 수 있습니다.</p>
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-headphones fa-2x flex-shrink-0 bg-primary p-3 text-white"></i>
+                        <div class="ps-4">
+                            <h6>고객문의</h6>
+                            <a href="/customerService">문의하러가기</a>
+                            <h3 class="text-primary m-0">heotjoeun@naver.com</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4 align-items-center">
+                        <div class="">
+                            <div class="bg-primary p-4 mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: center;">
+                                <i class="fa fa-users fa-2x text-white mb-3"></i>
+                                <h2 class="text-white mb-2" data-toggle="counter-up">11</h2>
+                                <p class="text-white mb-0">상담원 수</p>
+                            </div>
+                            <div class="bg-success p-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: center;">
+                                <i class="fa fa-star fa-2x text-white mb-3"></i>
+                                <h2 class="text-white mb-2" data-toggle="counter-up">999</h2>
+                                <p class="text-white mb-0">고객 리뷰</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fact End -->
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container py-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">서비스 항목</h6>
+                <h1 class="mb-5">저희 회사의 주요 서비스입니다.</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                        </div>
+                        <h4 class="mb-3">일반 운송</h4>
+                        <p>1t 이하의 화물차량을 통해 빠르게 운송합니다.</p>
+                        <a class="btn-slide mt-2" href="/normalDelivery"><span>&nbsp;더보기</span></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                        </div>
+                        <h4 class="mb-3">퀵 배송</h4>
+                        <p>자사의 퀵 기사분을 통해 보다 저렴하게 빠르게 운송합니다.</p>
+                        <a class="btn-slide mt-2" href="/quickDelivery"><span>&nbsp;더보기</span></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                        </div>
+                        <h4 class="mb-3">대형 운송</h4>
+                        <p>1t 이상의 물품 및 화물을 운송합니다.</p>
+                        <a class="btn-slide mt-2" href="/hugeDelivery"><span>&nbsp;더보기</span></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden mb-4">
+                        </div>
+                        <h4 class="mb-3">기타 운송</h4>
+                        <p>선박 등을 사용하여 각 지역에 운송합니다.</p>
+                        <a class="btn-slide mt-2" id="backLinkService" href="#"><span>&nbsp;더보기</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+    <!-- Review Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="text-center">
+                <h6 class="text-secondary text-uppercase">리뷰</h6>
+                <h1 class="mb-0">고객 리뷰</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <div class="testimonial-item p-4 my-5">
+                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                    <div class="d-flex align-items-end mb-4">
+                        <div class="ms-4">
+                            <h5 class="mb-1">김**</h5>
+                            <p class="m-0">23세, 서울시 강남구</p>
+                        </div>
+                    </div>
+                    <p class="mb-0">배송도 빠르고 만족했습니다.</p>
+                </div>
+                <div class="testimonial-item p-4 my-5">
+                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                    <div class="d-flex align-items-end mb-4">
+                        <div class="ms-4">
+                            <h5 class="mb-1">이**</h5>
+                            <p class="m-0">29세, 경기도 김포시</p>
+                        </div>
+                    </div>
+                    <p class="mb-0">덕분에 급한물품 빠르게 전달받았습니다.</p>
+                </div>
+                <div class="testimonial-item p-4 my-5">
+                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                    <div class="d-flex align-items-end mb-4">
+                        <div class="ms-4">
+                            <h5 class="mb-1">강**</h5>
+                            <p class="m-0">27세, 서울시 용산구</p>
+                        </div>
+                    </div>
+                    <p class="mb-0">편하고 좋아요</p>
+                </div>
+                <div class="testimonial-item p-4 my-5">
+                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                    <div class="d-flex align-items-end mb-4">
+                        <div class="ms-4">
+                            <h5 class="mb-1">양**</h5>
+                            <p class="m-0">31세, 서울시 동작구</p>
+                        </div>
+                    </div>
+                    <p class="mb-0">서비스도 만족스럽네요. 연락도 잘되고</p>
+                </div>
+                <div class="testimonial-item p-4 my-5">
+                    <i class="fa fa-quote-right fa-3x text-light position-absolute top-0 end-0 mt-n3 me-4"></i>
+                    <div class="d-flex align-items-end mb-4">
+<!--                        <img class="img-fluid flex-shrink-0" src="" style="width: 80px; height: 80px;">-->
+                        <div class="ms-4">
+                            <h5 class="mb-1">김**</h5>
+                            <p class="m-0">20세, 서울시 서대문구</p>
+                        </div>
+                    </div>
+                    <p class="mb-0">멀다 싶었는데 생각보다 빠릅니다.</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Review End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-6 col-md-6">
+                    <img src="img/logo_white1.png" alt="" style="width: 100%; height: 100%;">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">주소</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-2"></i>강서구, 서울시</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-2"></i>heotjoeun@naver.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="/normalDelivery">일반 운송</a>
+                    <a class="btn btn-link" href="/quickDelivery">퀵 배송</a>
+                    <a class="btn btn-link" href="/hugeDelivery">대형 운송</a>
+                    <a class="btn btn-link" id="backLinkFooter" href="#">기타 운송</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">HEOLOGISTICS</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a>2024</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

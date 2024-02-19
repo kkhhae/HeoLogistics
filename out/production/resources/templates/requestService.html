@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HeoLogistics</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Libraries -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- 404 script-->
+    <script src="/js/backPage.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-1 border-primary sticky-top p-0">
+        <a href="/" class="navbar-brand bg-primary d-flex align-items-center px-4">
+            <img src="img/logo1.png" alt="" style="width: 100%; height:100%;">
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link">홈</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">운송</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="/normalDelivery" class="dropdown-item">일반 운송</a>
+                        <a href="/quickDelivery" class="dropdown-item">퀵 배송</a>
+                        <a href="/hugeDelivery" class="dropdown-item">대형 운송</a>
+                        <a href="#" id="backLink" class="dropdown-item">기타 운송</a>
+                    </div>
+                </div>
+                <a href="/requestService" class="nav-item nav-link active">신청</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">고객센터</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="/customerService" class="dropdown-item">문의</a>
+                        <a href="/customerServiceList" class="dropdown-item">목록</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
+        <div class="container py-5" style="text-align: center;">
+            <h1 class="display-3 text-white mb-3 ">배송 신청</h1>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Service Start -->
+
+    <!-- 맵 검색 전 회사건물 위치 -->
+    <div class="container-fluid overflow-hidden py-2 px-lg-0"  style="width: 95%;">
+        <div class="container about py-2 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <div id="map" style="width:100%;height:100%;"></div>
+                        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4b4cf161070cc8f00fb099ef7376f01&libraries=services"></script>
+                        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                        <script>
+                            // 맵 설정
+                            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                                mapOption = {
+                                    center: new kakao.maps.LatLng(37.491486, 127.032161), // 지도의 중심좌표
+                                    level: 4 // 지도의 확대 레벨
+                                };
+
+                            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                            // 마커 설정
+                            var markerPosition = new kakao.maps.LatLng(37.491486, 127.032161);
+                            // 마커를 생성합니다
+                            var marker = new kakao.maps.Marker({
+                                position: markerPosition
+                            });
+                            // 마커가 지도 위에 표시되도록 설정합니다
+                            marker.setMap(map);
+
+                            // 카카오 맵 API의 Geocoder 객체 생성
+                            var geocoder = new kakao.maps.services.Geocoder();
+
+                            // 우편번호 검색 함수
+                            function findPostCode() {
+                                new daum.Postcode({
+                                    oncomplete: function(data) {
+                                        var addr = data.address; // 최종 주소 변수
+
+                                        // 주소 정보를 해당 필드에 넣는다.
+                                        document.getElementById("address").value = addr;
+                                        // 주소로 상세 정보를 검색
+                                        geocoder.addressSearch(data.address, function(results, status) {
+
+                                            // 정상적으로 검색이 완료됐으면
+                                            if (status === daum.maps.services.Status.OK) {
+
+                                                var result = results[0]; //첫번째 결과의 값을 활용
+
+                                                // 해당 주소에 대한 좌표를 받아서
+                                                var coords = new daum.maps.LatLng(result.y, result.x);
+                                                // 지도를 보여준다.
+                                                mapContainer.style.display = "block";
+                                                map.relayout();
+                                                // 지도 중심을 변경한다.
+                                                map.setCenter(coords);
+                                                // 마커를 결과값으로 받은 위치로 옮긴다.
+                                                marker.setPosition(coords)
+
+                                            }
+                                        });
+                                        console.log(addr);
+                                    }
+                                }).open();
+                            }
+
+                        </script>
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s" style="">
+                    <h6 class="text-secondary text-uppercase mb-3">거리 측정하기</h6>
+                    <h2 class="mb-2">먼저 주소를 입력해주세요</h2>
+                    <a href="javascript:void(0);" class="btn btn-primary mb-5" onclick="findPostCode()">주소 찾기</a>
+
+                    <label for="address"></label>
+                    <input class="form-control" type="text" id="address" placeholder="주소" style="width:90%;">
+                    <label for="addressDetail"></label>
+                    <input class="form-control" type="text" id="addressDetail" placeholder="상세 주소" style="width:90%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 py-1 px-lg-0 about-text wow fadeInUp" data-wow-delay="0.3s">
+        <a class="btn btn-primary" style="width:100%; text-align: center; margin: auto;"
+           onclick="searchingService();">주소 입력 완료 시 조회를 눌러주세요!</a>
+    </div>
+
+    <!-- 맵 검색 후 처리 -->
+    <script>
+        //카카오 길찾기로 거리 측정하는거
+        function searchingService() {
+            var address = document.getElementById('address').value;
+            // 주소를 좌표로 변환(주소값으로 검색이 안되서 좌표변환)
+            geocoder.addressSearch(address, function(results, status) {
+                if (status === daum.maps.services.Status.OK) {
+                    var coords = new daum.maps.LatLng(results[0].x, results[0].y);
+                    var origin = coords.getLat() + ',' + coords.getLng(); // 출발지 좌표
+
+                    // 목적지 좌표 설정 (회사건물)
+                    var destination = '127.032161,37.491486';
+                    console.log("출발지 좌표 : " + origin);
+                    console.log("목적지 좌표 : " + destination);
+
+                    // API 요청 URL
+                    var apiUrl = 'https://apis-navi.kakaomobility.com/v1/directions?' +
+                        'origin=' + origin +
+                        '&destination=' + destination +
+                        '&waypoints=' +
+                        '&priority=RECOMMEND' +
+                        '&car_fuel=GASOLINE' +
+                        '&car_hipass=false' +
+                        '&alternatives=false' +
+                        '&road_details=false';
+                    console.log(apiUrl);
+                    // AJAX 요청 보내기
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', apiUrl, true);
+                    xhr.setRequestHeader('Authorization', 'KakaoAK db120219b31c21d672790becddbc93d6');//restapi
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                var response = JSON.parse(xhr.responseText);
+                                console.log(response); // 응답 결과 출력
+                                sendData(response.trans_id, response.routes);
+                            } else {
+                                console.error('Request failed:', xhr.status);
+                            }
+                        }
+                    };
+
+                    xhr.send();
+
+                } else {
+                    console.error('Geocode failed:', status);
+                }
+            });
+        }
+
+        //다음페이지 넘기기 (뷰)
+        function sendData(trans_id, routes) {
+            var address = document.getElementById('address').value;
+            var addressDetail = document.getElementById('addressDetail').value;
+
+            var send = {
+                "trans_id": trans_id,
+                "routes": routes,
+                "address": address,
+                "addressDetail": addressDetail
+            };
+            localStorage.setItem('kakaoMapData', JSON.stringify(send));
+
+            window.location.href = '/requestResult';
+        }
+
+    </script>
+
+    <!-- Service End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-6 col-md-6">
+                    <img src="img/logo_white1.png" alt="" style="width: 100%; height: 100%;">
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">주소</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-2"></i>강서구, 서울시</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-2"></i>heotjoeun@naver.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="/normalDelivery">일반 운송</a>
+                    <a class="btn btn-link" href="/quickDelivery">퀵 배송</a>
+                    <a class="btn btn-link" href="/hugeDelivery">대형 운송</a>
+                    <a class="btn btn-link" id="backLinkFooter" href="#">기타 운송</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">HEOLOGISTICS</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a>2024</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
+
+</html>
