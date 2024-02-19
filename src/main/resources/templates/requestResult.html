@@ -33,17 +33,6 @@
 
 </head>
 
-<style>
-    #modalRight .modal-dialog{
-        margin-left: auto;
-        margin-right: 0;
-    }
-    #modalLeft .modal-dialog{
-        margin-right: auto;
-        margin-left: 0;
-    }
-</style>
-
 <body>
 
     <!-- Spinner Start -->
@@ -168,8 +157,6 @@
                     <h6 class="text-secondary text-uppercase mb-3">배송지역 확인</h6>
                     <h2 class="mb-2">맞으면 확인을 눌러주세요!</h2>
                     <a href="javascript:void(0);" class="btn btn-primary mb-3" onclick="openModal()"> 확인</a>
-<!--                    <a href="javascript:void(0);" class="btn btn-primary mb-3" id="showButton"-->
-<!--                       data-bs-toggle="modal" data-bs-target="#dispatchingModal"> 확인</a>-->
                     <a href="/requestService" class="btn btn-danger mb-3"> 재입력</a>
                     <script>
                         document.getElementById('showButton').onclick = function() {
@@ -178,8 +165,7 @@
                         }
 
                         function openModal() {
-                            $('#modalLeft').modal('show');
-                            $('#modalRight').modal('show');
+                            $('#modal').modal('show');
                         }
                     </script>
                 </div>
@@ -191,11 +177,12 @@
 
 
                 <!-- 배차 모달 좌-->
-                <div class="modal fade" id="modalLeft" tabindex="-1" aria-labelledby="dispatchingModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="dispatchingModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">test</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form id="routeInfoForm">
@@ -208,15 +195,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- 배차 모달 우-->
-                <div class="modal fade" id="modalRight" tabindex="-1" aria-labelledby="dispatchingModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="dispatchingModalLabel">배송 요청</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form>
