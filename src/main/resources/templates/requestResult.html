@@ -96,9 +96,11 @@
                     <div id="map" style="width:100%;height:100%;"></div>
                     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4b4cf161070cc8f00fb099ef7376f01&libraries=services"></script>
                     <script>
+                        //지도 스크립트 처리
 
                         //로컬 스토리지에서 데이터를 가져오기
                         var kakaoMapData = JSON.parse(localStorage.getItem('kakaoMapData'));
+                        console.log(kakaoMapData);
 
                         //데이터를 이용하여 카카오 지도에 표시하는 함수
                         function displayMapWithData() {
@@ -182,6 +184,15 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">test</h5>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">test</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -197,30 +208,45 @@
                     </div>
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="dispatchingModalLabel">배송 요청</h5>
+                            <div class="modal-header" >
+                                <h5 class="modal-title" id="dispatchingModalLabel">배송지 확인</h5>
                             </div>
                             <div class="modal-body">
                                 <form>
                                     <div class="mb-3">
                                         <label for="deliveryAddress" class="form-label">배송 주소</label>
-                                        <input type="text" class="form-control" id="deliveryAddress" placeholder="배송 주소를 입력하세요">
+                                        <input type="text" class="form-control" id="deliveryAddress" readonly>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="deliveryDate" class="form-label">배송 날짜</label>
-                                        <input type="date" class="form-control" id="deliveryDate">
+                                        <label for="deliveryDate" class="form-label">배송신청일</label>
+                                        <input type="text" class="form-control" id="deliveryDate" readonly>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="deliveryTime" class="form-label">배송 시간</label>
-                                        <input type="time" class="form-control" id="deliveryTime">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">배송 요청</button>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%;">배송 요청</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <script>
+                    //모달 스크립트 처리
+
+                    //카카오맵데이터에서 데이터 주소값 가져오기
+                    var address = kakaoMapData.address;
+                    var addressDetail = kakaoMapData.addressDetail;
+                    var addressAll = address + ' ' + addressDetail;
+                    console.log(addressAll);
+
+                    document.getElementById('deliveryAddress').value = addressAll;
+
+                    // 현재 날짜, 시간 넣기
+                    var currentDate = new Date();
+                    var formattedDate = currentDate.toISOString().slice(0, 10);
+                    console.log(formattedDate);
+
+                    document.getElementById('deliveryDate').value = formattedDate;
+
+                </script>
 
             </div>
         </div>
