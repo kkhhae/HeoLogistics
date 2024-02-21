@@ -181,6 +181,7 @@
                 <!-- 배차 모달 -->
                 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="dispatchingModalLabel" aria-hidden="true">
                     <div class="modal-dialog" style="display: flex;">
+                        <!-- 왼쪽 -->
                         <div class="modal-content" style="flex: 1;">
                             <div class="modal-header">
                                 <h5 class="modal-title">거리 측정정보</h5>
@@ -188,7 +189,7 @@
                             <div class="modal-body">
                             </div>
                         </div>
-
+                        <!-- 오른쪽 -->
                         <div style="display: flex; flex-direction: column;">
                             <div class="modal-content" style="flex: 1;">
                                 <div class="modal-header">
@@ -216,6 +217,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -237,6 +239,19 @@
                     console.log(formattedDate);
 
                     document.getElementById('deliveryDate').value = formattedDate;
+
+                    //길찾기 측정 정보 가져오기
+                    var result = kakaoMapData.routes[0].summary;
+
+                    var originName = 'HEO로지스틱스, 강남점';
+                    console.log('출발지 주소 : ', originName);
+
+                    var distance = result.distance; //직선거리
+                    console.log('거리 : ',distance);
+
+                    var duration = (result.duration)/60; //걸리는 시간
+                    console.log('걸리는시간 : ', duration,'분');
+
 
                 </script>
 
