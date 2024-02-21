@@ -184,20 +184,32 @@
                         <!-- 왼쪽 -->
                         <div class="modal-content" style="flex: 1;">
                             <div class="modal-header">
-                                <h5 class="modal-title">거리 측정정보</h5>
+                                <h5 class="modal-title">배차선택</h5>
                             </div>
                             <div class="modal-body">
+
                             </div>
                         </div>
                         <!-- 오른쪽 -->
                         <div style="display: flex; flex-direction: column;">
                             <div class="modal-content" style="flex: 1;">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">배차 선택</h5>
+                                    <h5 class="modal-title">측정</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    배차를 선택해주세요
+                                    <div class="mb-3">
+                                        <label for="deliveryAddress" class="form-label">도착지까지의 거리(미터)</label>
+                                        <input type="text" class="form-control" id="distance" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="deliveryAddress" class="form-label">예상시간(분)</label>
+                                        <input type="text" class="form-control" id="duration" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="deliveryAddress" class="form-label">통행요금 추가비용</label>
+                                        <input type="text" class="form-control" id="toll" readonly>
+                                    </div>
                                 </div>
                             </div>
 
@@ -225,7 +237,7 @@
                 <script>
                     //모달 스크립트 처리
 
-                    //카카오맵데이터에서 데이터 주소값 가져오기
+                    //카카오맵데이터에서 데이터 주소값 가져오기 (도착지)
                     var address = kakaoMapData.address;
                     var addressDetail = kakaoMapData.addressDetail;
                     var addressAll = address + ' ' + addressDetail;
@@ -237,20 +249,23 @@
                     var currentDate = new Date();
                     var formattedDate = currentDate.toISOString().slice(0, 10);
                     console.log(formattedDate);
-
                     document.getElementById('deliveryDate').value = formattedDate;
 
                     //길찾기 측정 정보 가져오기
                     var result = kakaoMapData.routes[0].summary;
 
-                    var originName = 'HEO로지스틱스, 강남점';
-                    console.log('출발지 주소 : ', originName);
-
                     var distance = result.distance; //직선거리
-                    console.log('거리 : ',distance);
+                    console.log('거리 : ',distance,'m');
+                    document.getElementById('distance').value = distance;
 
-                    var duration = (result.duration)/60; //걸리는 시간
+
+                    var duration = Math.round((result.duration)/60); //걸리는 시간
                     console.log('걸리는시간 : ', duration,'분');
+                    document.getElementById('duration').value = duration;
+
+                    var toll = result.fare.toll;    //통행요금
+                    console.log('통행요금 : ', toll,'원');
+                    document.getElementById('toll').value = toll;
 
 
                 </script>
