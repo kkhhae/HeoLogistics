@@ -208,19 +208,19 @@
                                             <script>
                                                 //드롭다운 맞춰서 DIV보여주기
                                                 function showNormal(){
-                                                    $('#normalDiv').modal('show');
-                                                    $('#quickDIv').modal('hide');
-                                                    $('#bigDiv').modal('hide');
+                                                    $('#normalDiv').div('show');
+                                                    $('#quickDIv').div('hide');
+                                                    $('#bigDiv').div('hide');
                                                 }
                                                 function showQuick(){
-                                                    $('#normalDiv').modal('hide');
-                                                    $('#quickDIv').modal('show');
-                                                    $('#bigDiv').modal('hide');
+                                                    $('#normalDiv').div('hide');
+                                                    $('#quickDIv').div('show');
+                                                    $('#bigDiv').div('hide');
                                                 }
                                                 function showBig(){
-                                                    $('#normalDiv').modal('hide');
-                                                    $('#quickDIv').modal('hide');
-                                                    $('#bigDiv').modal('show');
+                                                    $('#normalDiv').div('hide');
+                                                    $('#quickDIv').div('hide');
+                                                    $('#bigDiv').div('show');
                                                 }
                                             </script>
 
@@ -229,8 +229,28 @@
                                     </div>
                                 </div>
                                 <div class="mb-3" id="normalDiv">
+                                    <div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/1t카고.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/1t탑차.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3" id="quickDiv">
 
                                 </div>
+                                <div class="mb-3" id="bigDiv" >
+
+                                </div>
+
+
                                 <div class="mb-3">
                                     <label for="price" class="form-label">금액</label>
                                     <input type="text" class="form-control" id="price" readonly>
