@@ -191,24 +191,46 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <h5>차량 선택</h5>
-                                    <div class="list-group" style="max-height: 400px; overflow-y: auto;">
+                                    <div class="list-group" style="max-height: 400px;">
                                         <div>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    목록
+                                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"
+                                                        style="width: 100%; background: gray; border: none;">
+                                                    배차 선택
                                                 </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">일반 배송</a></li>
-                                                    <li><a class="dropdown-item" href="#">퀵 배송</a></li>
-                                                    <li><a class="dropdown-item" href="#">대형 배송</a></li>
+                                                <ul class="dropdown-menu" style="width: 100%;">
+                                                    <li><a class="dropdown-item" onclick="showNormal();">일반 배송</a></li>
+                                                    <li><a class="dropdown-item" onclick="showQuick();">퀵 배송</a></li>
+                                                    <li><a class="dropdown-item" onclick="showBig();">대형 배송</a></li>
                                                 </ul>
                                             </div>
-                                            
+                                            <script>
+                                                //드롭다운 맞춰서 DIV보여주기
+                                                function showNormal(){
+                                                    $('#normalDiv').modal('show');
+                                                    $('#quickDIv').modal('hide');
+                                                    $('#bigDiv').modal('hide');
+                                                }
+                                                function showQuick(){
+                                                    $('#normalDiv').modal('hide');
+                                                    $('#quickDIv').modal('show');
+                                                    $('#bigDiv').modal('hide');
+                                                }
+                                                function showBig(){
+                                                    $('#normalDiv').modal('hide');
+                                                    $('#quickDIv').modal('hide');
+                                                    $('#bigDiv').modal('show');
+                                                }
+                                            </script>
+
 
                                         </div>
                                     </div>
                                 </div>
+                                <div class="mb-3" id="normalDiv">
 
+                                </div>
                                 <div class="mb-3">
                                     <label for="price" class="form-label">금액</label>
                                     <input type="text" class="form-control" id="price" readonly>
@@ -233,7 +255,7 @@
                                         <input type="text" class="form-control" id="duration" readonly>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="toll" class="form-label">통행요금 추가비용</label>
+                                        <label for="toll" class="form-label">통행요금 추가비용(원)</label>
                                         <input type="text" class="form-control" id="toll" readonly>
                                     </div>
                                 </div>
