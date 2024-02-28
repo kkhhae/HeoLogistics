@@ -196,30 +196,35 @@
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button"
                                                     data-bs-toggle="dropdown" aria-expanded="false"
-                                                    style="width: 100%; background: gray; border: none;">
+                                                    id="dropdownMenu" style="width: 100%; background: gray; border: none;">
                                                 배차 선택
                                             </button>
-                                            <ul class="dropdown-menu" style="width: 100%;">
-                                                <li><a class="dropdown-item" onclick="showNormal();">일반 배송</a></li>
-                                                <li><a class="dropdown-item" onclick="showQuick();">퀵 배송</a></li>
-                                                <li><a class="dropdown-item" onclick="showHuge();">대형 배송</a></li>
+                                            <ul class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMenu">
+                                                <li><a class="dropdown-item" onclick="showNormal(); changeButtonText('일반 배송');">일반 배송</a></li>
+                                                <li><a class="dropdown-item" onclick="showQuick(); changeButtonText('퀵 배송');">퀵 배송</a></li>
+                                                <li><a class="dropdown-item" onclick="showHuge(); changeButtonText('대형 배송');">대형 배송</a></li>
                                             </ul>
                                         </div>
                                         <script>
+                                            //목록 누르면 해당 텍스트로 변경
+                                            function changeButtonText(text) {
+                                                document.getElementById('dropdownMenu').innerText = text;
+                                            }
+
                                             //드롭다운 맞춰서 DIV보여주기
                                             function showNormal(){
                                                 $('#normalDiv').show();
-                                                $('#quickDIv').hide();
+                                                $('#quickDiv').hide();
                                                 $('#hugeDiv').hide();
                                             }
                                             function showQuick(){
                                                 $('#normalDiv').hide();
-                                                $('#quickDIv').show();
+                                                $('#quickDiv').show();
                                                 $('#hugeDiv').hide();
                                             }
                                             function showHuge(){
                                                 $('#normalDiv').hide();
-                                                $('#quickDIv').hide();
+                                                $('#quickDiv').hide();
                                                 $('#hugeDiv').show();
                                             }
                                         </script>
@@ -231,12 +236,14 @@
                                 <div>
                                     <div class="service-item" style="border: black;">
                                         <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/1t카고.png" alt="" style="max-width: 100%; height: auto;">
+                                            <img class="img-fluid" src="/img/vehicle/1t카고.png" alt=""
+                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('1t 카고 운송');">
                                         </div>
                                     </div>
                                     <div class="service-item" style="border: black;">
                                         <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/1t탑차.png" alt="" style="max-width: 100%; height: auto;">
+                                            <img class="img-fluid" src="/img/vehicle/1t탑차.png" alt=""
+                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('1t 탑차 운송');">
                                         </div>
                                     </div>
                                 </div>
@@ -246,12 +253,14 @@
                                 <div>
                                     <div class="service-item" style="border: black;">
                                         <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/bike.png" alt="" style="max-width: 100%; height: auto;">
+                                            <img class="img-fluid" src="/img/vehicle/bike.png" alt=""
+                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('오토바이 운송');">
                                         </div>
                                     </div>
                                     <div class="service-item" style="border: black;">
                                         <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/다마스.png" alt="" style="max-width: 100%; height: auto;">
+                                            <img class="img-fluid" src="/img/vehicle/다마스.png" alt=""
+                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('다마스 운송');">
                                         </div>
                                     </div>
                                 </div>
@@ -261,12 +270,23 @@
                                 <div>
                                     <div class="service-item" style="border: black;">
                                         <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/trailer.png" alt="" style="max-width: 100%; height: auto;">
+                                            <img class="img-fluid" src="/img/vehicle/trailer.png" alt=""
+                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('트레일러 운송');">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="carType" class="form-label">차량</label>
+                                <input type="text" class="form-control" id="carType" readonly>
+                            </div>
+                            <script>
+                                //이미지 클릭 시 차량에 텍스트넣어주기
+                                function changeCarType(text){
+                                    document.getElementById('carType').value = text;
+                                }
+                            </script>
 
                             <div class="mb-3">
                                 <label for="price" class="form-label">금액</label>
