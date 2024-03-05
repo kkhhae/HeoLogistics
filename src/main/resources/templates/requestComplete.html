@@ -126,36 +126,44 @@
             <p id="deliveryDate"></p>
         </div>
         <div class="receipt-info">
-            <label for="additionalCost">통행요금 추가비용(원)</label>
-            <p id="additionalCost"></p>
-            <label for="estimatedTime">예상시간(분)</label>
-            <p id="estimatedTime"></p>
+            <label for="toll">통행요금 추가비용(원)</label>
+            <p id="toll"></p>
+            <label for="duration">예상시간(분)</label>
+            <p id="duration"></p>
         </div>
-        <button onclick="printReceipt()">영수증 인쇄</button>
     </div>
 
     <script>
         window.onload = function() {
-            var receipt = JSON.parse(document.getElementById("receiptData").textContent);
-            document.getElementById("carType").innerText = receipt.carType;
-            document.getElementById("price").innerText = receipt.price;
-            document.getElementById("distance").innerText = receipt.distance;
-            document.getElementById("deliveryAddress").innerText = receipt.deliveryAddress;
-            document.getElementById("deliveryDate").innerText = receipt.deliveryDate;
-            document.getElementById("additionalCost").innerText = receipt.additionalCost;
-            document.getElementById("estimatedTime").innerText = receipt.estimatedTime;
+            // 현재 페이지의 URL에서 쿼리 파라미터를 추출합니다.
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // 쿼리 파라미터에서 필요한 값을 추출합니다.
+            const carType = urlParams.get('carType');
+            const price = urlParams.get('price');
+            const distance = urlParams.get('distance');
+            const deliveryAddress = urlParams.get('deliveryAddress');
+            const deliveryDate = urlParams.get('deliveryDate');
+            const toll = urlParams.get('toll');
+            const duration = urlParams.get('duration');
+
+            // 각 값을 화면의 적절한 위치에 표시합니다.
+            document.getElementById("carType").innerText = carType;
+            document.getElementById("price").innerText = price;
+            document.getElementById("distance").innerText = distance;
+            document.getElementById("deliveryAddress").innerText = deliveryAddress;
+            document.getElementById("deliveryDate").innerText = deliveryDate;
+            document.getElementById("toll").innerText = toll;
+            document.getElementById("duration").innerText = duration;
         };
 
-        function printReceipt() {
-            window.print();
-        }
+
     </script>
 
     <div class="container py-5">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="mb-4">처리완료되었습니다. 감사합니다.</h2>
-
+                <h2 class="mb-4" style="margin-top: 10%;">처리완료되었습니다. 감사합니다.</h2>
             </div>
             <div class="col-md-6" style="text-align: center; margin: auto">
                 <h2 class="mb-4">문의 안내</h2>

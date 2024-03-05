@@ -70,7 +70,7 @@ public class MainController {
     }
 
     @PostMapping(value = "/requestComplete", consumes = "application/json")
-    public ResponseEntity<String> requestAction(@RequestBody Receipt receiptData, Model model) {
+    public ResponseEntity<String> requestAction(@RequestBody Receipt receiptData) {
         delivetyRepository.save(receiptData);
         return ResponseEntity.ok().body("{\"redirect\": \"/requestComplete?carType=" + receiptData.getCarType() + "&price=" + receiptData.getPrice() + "&distance=" + receiptData.getDistance() + "&deliveryAddress=" + receiptData.getDeliveryAddress() + "&deliveryDate=" + receiptData.getDeliveryDate() + "&toll=" + receiptData.getToll() + "&duration=" + receiptData.getDuration() + "\"}");
 
