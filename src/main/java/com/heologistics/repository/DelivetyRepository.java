@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DelivetyRepository extends JpaRepository<Receipt,Long> {
 
-    void saveNewOrder(Receipt receiptData);
+    void saveReceipt(Receipt receiptData);
 }

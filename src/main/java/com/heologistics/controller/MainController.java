@@ -61,9 +61,8 @@ public class MainController {
 
     @PostMapping("/requestComplete")
     public String requestAction(Receipt receiptData){
-        deliveryService.newOrder(receiptData);
-
-        return null;
+        deliveryService.saveReceipt(receiptData);
+        return "requestComplete.html";
     }
 
 }

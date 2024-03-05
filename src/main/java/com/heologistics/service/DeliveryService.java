@@ -13,7 +13,7 @@ public class DeliveryService {
     private DelivetyRepository delivetyRepository;
 
 
-    public void newOrder(Receipt receiptData) {
-        delivetyRepository.saveNewOrder(receiptData);
+    public void saveReceipt(Receipt receiptData) {
+        delivetyRepository.saveReceipt(receiptData);
     }
 }
