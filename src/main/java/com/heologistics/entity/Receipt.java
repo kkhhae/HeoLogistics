@@ -21,4 +21,7 @@ public class Receipt {
     private String deliveryAddress;
     @Column(name = "DELIVERY_DATE")
     private String deliveryDate;
+
+    private String duration;
+    private String toll;
 }

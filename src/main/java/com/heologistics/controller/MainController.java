@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 @Controller
 public class MainController {
 
@@ -68,7 +71,19 @@ public class MainController {
     @PostMapping(value = "/requestComplete", consumes = "application/json")
     public String requestAction(@RequestBody Receipt receiptData, Model model) {
         delivetyRepository.save(receiptData);
-        model.addAttribute("receipt", receiptData);
-        return "requestComplete.html";
+        try {
+            String carType = URLEncoder.encode(receiptData.getCarType(), StandardCharsets.UTF_8.toString());
+            String price = URLEncoder.encode(receiptData.getPrice(), StandardCharsets.UTF_8.toString());
+            String distance = URLEncoder.encode(receiptData.getDistance(), StandardCharsets.UTF_8.toString());
+            String deliveryAddress = URLEncoder.encode(receiptData.getDeliveryAddress(), StandardCharsets.UTF_8.toString());
+            String deliveryDate = URLEncoder.encode(receiptData.getDeliveryDate(), StandardCharsets.UTF_8.toString());
+            String toll = URLEncoder.encode(receiptData.getToll(), StandardCharsets.UTF_8.toString());
+            String duration = URLEncoder.encode(receiptData.getDuration(), StandardCharsets.UTF_8.toString());
+
+            return "redirect:/requestComplete.html?carType=" + carType + "&price=" + price + "&distance=" + distance + "&deliveryAddress=" + deliveryAddress + "&deliveryDate=" + deliveryDate + "&toll=" + toll + "&duration=" + duration;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
