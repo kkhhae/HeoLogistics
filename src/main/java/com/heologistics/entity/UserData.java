@@ -1,24 +1,23 @@
 package com.heologistics.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
-public class User {
+public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_NUMBER")
     private int userNumber;
 
+    @Column(name = "USER_NAME")
     private String userName;
+    @Column(name = "USER_AGE")
     private int userAge;
+    @Column(name = "USER_ADDRESS")
     private String userAddress;
 
 }

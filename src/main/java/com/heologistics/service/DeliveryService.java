@@ -12,8 +12,4 @@ public class DeliveryService {
     @Autowired
     private DelivetyRepository delivetyRepository;
 
-
-    public void saveReceipt(Receipt receiptData) {
-        delivetyRepository.saveReceipt(receiptData);
-    }
 }

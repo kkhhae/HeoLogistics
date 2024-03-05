@@ -2,17 +2,22 @@ package com.heologistics.controller;
 
 
 import com.heologistics.entity.Receipt;
+import com.heologistics.repository.DelivetyRepository;
 import com.heologistics.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class MainController {
 
     @Autowired
     private DeliveryService deliveryService;
+
+    @Autowired
+    private DelivetyRepository delivetyRepository;
 
 
     @GetMapping("/")
@@ -60,9 +65,8 @@ public class MainController {
     }
 
     @PostMapping("/requestComplete")
-    public String requestAction(Receipt receiptData){
-        deliveryService.saveReceipt(receiptData);
+    public String requestAction(@RequestBody Receipt receiptData){
+        delivetyRepository.save(receiptData);
         return "requestComplete.html";
     }
-
 }
