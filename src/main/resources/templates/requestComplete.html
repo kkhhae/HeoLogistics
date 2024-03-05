@@ -104,26 +104,38 @@
         <h1>배송 영수증</h1>
         <div class="receipt-info">
             <label for="carType">차량</label>
-            <p>1t 카고 운송</p>
+            <p id="carType"></p>
             <label for="price">금액</label>
-            <p>100,000원</p>
+            <p id="price"></p>
             <label for="distance">도착지까지의 거리(미터)</label>
-            <p>18795</p>
+            <p id="distance"></p>
             <label for="deliveryAddress">배송 주소</label>
-            <p>서울 강서구 공항대로 지하 631</p>
+            <p id="deliveryAddress"></p>
             <label for="deliveryDate">배송신청일</label>
-            <p>2024-03-05</p>
+            <p id="deliveryDate"></p>
         </div>
         <div class="receipt-info">
             <label for="additionalCost">통행요금 추가비용(원)</label>
-            <p>0원</p>
+            <p id="additionalCost"></p>
             <label for="estimatedTime">예상시간(분)</label>
-            <p>29분</p>
+            <p id="estimatedTime"></p>
         </div>
         <button onclick="printReceipt()">영수증 인쇄</button>
     </div>
 
     <script>
+
+        window.onload = function() {
+            var receipt = JSON.parse(document.getElementById("receiptData").textContent);
+            document.getElementById("carType").innerText = receipt.carType;
+            document.getElementById("price").innerText = receipt.price;
+            document.getElementById("distance").innerText = receipt.distance;
+            document.getElementById("deliveryAddress").innerText = receipt.deliveryAddress;
+            document.getElementById("deliveryDate").innerText = receipt.deliveryDate;
+            document.getElementById("additionalCost").innerText = receipt.additionalCost;
+            document.getElementById("estimatedTime").innerText = receipt.estimatedTime;
+        };
+
         function printReceipt() {
             window.print();
         }

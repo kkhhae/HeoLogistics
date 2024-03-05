@@ -6,6 +6,7 @@ import com.heologistics.repository.DelivetyRepository;
 import com.heologistics.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,9 +65,10 @@ public class MainController {
         return "requestComplete.html";
     }
 
-    @PostMapping("/requestComplete")
-    public String requestAction(@RequestBody Receipt receiptData){
+    @PostMapping(value = "/requestComplete", consumes = "application/json")
+    public String requestAction(@RequestBody Receipt receiptData, Model model) {
         delivetyRepository.save(receiptData);
+        model.addAttribute("receipt", receiptData);
         return "requestComplete.html";
     }
 }
