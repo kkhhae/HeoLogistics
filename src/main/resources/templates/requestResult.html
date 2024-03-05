@@ -35,447 +35,447 @@
 
 <body>
 
-<!-- Spinner Start -->
-<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
-</div>
-<!-- Spinner End -->
+    <!-- Spinner End -->
 
 
-<!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-1 border-primary sticky-top p-0">
-    <a href="/" class="navbar-brand bg-primary d-flex align-items-center px-4">
-        <img src="img/logo1.png" alt="" style="width: 100%; height:100%;">
-    </a>
-    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="/" class="nav-item nav-link">홈</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">운송</a>
-                <div class="dropdown-menu fade-up m-0">
-                    <a href="/normalDelivery" class="dropdown-item">일반 운송</a>
-                    <a href="/quickDelivery" class="dropdown-item">퀵 배송</a>
-                    <a href="/hugeDelivery" class="dropdown-item">대형 운송</a>
-                    <a href="#" id="backLink" class="dropdown-item">기타 운송</a>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-1 border-primary sticky-top p-0">
+        <a href="/" class="navbar-brand bg-primary d-flex align-items-center px-4">
+            <img src="img/logo1.png" alt="" style="width: 100%; height:100%;">
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link">홈</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">운송</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="/normalDelivery" class="dropdown-item">일반 운송</a>
+                        <a href="/quickDelivery" class="dropdown-item">퀵 배송</a>
+                        <a href="/hugeDelivery" class="dropdown-item">대형 운송</a>
+                        <a href="#" id="backLink" class="dropdown-item">기타 운송</a>
+                    </div>
                 </div>
-            </div>
-            <a href="/requestService" class="nav-item nav-link active">신청</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">고객센터</a>
-                <div class="dropdown-menu fade-up m-0">
-                    <a href="/customerService" class="dropdown-item">문의</a>
-                    <a href="/customerServiceList" class="dropdown-item">목록</a>
+                <a href="/requestService" class="nav-item nav-link active">신청</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">고객센터</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="/customerService" class="dropdown-item">문의</a>
+                        <a href="/customerServiceList" class="dropdown-item">목록</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
+        <div class="container py-5" style="text-align: center;">
+            <h1 class="display-3 text-white mb-3 ">배송 신청</h1>
+        </div>
     </div>
-</nav>
-<!-- Navbar End -->
+    <!-- Header End -->
 
-<!-- Header Start -->
-<div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
-    <div class="container py-5" style="text-align: center;">
-        <h1 class="display-3 text-white mb-3 ">배송 신청</h1>
-    </div>
-</div>
-<!-- Header End -->
+    <!-- Service Start -->
 
-<!-- Service Start -->
+    <!-- 카카오 지도를 표시할 영역 -->
+    <div class="container-fluid overflow-hidden py-2 px-lg-0" style="width: 95%;">
+        <div class="container about py-2 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-9 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <div id="map" style="width:100%;height:100%;"></div>
+                        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4b4cf161070cc8f00fb099ef7376f01&libraries=services"></script>
+                        <script>
+                            //지도 스크립트 처리
 
-<!-- 카카오 지도를 표시할 영역 -->
-<div class="container-fluid overflow-hidden py-2 px-lg-0" style="width: 95%;">
-    <div class="container about py-2 px-lg-0">
-        <div class="row g-5 mx-lg-0">
-            <div class="col-lg-9 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
-                <div class="position-relative h-100">
-                    <div id="map" style="width:100%;height:100%;"></div>
-                    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4b4cf161070cc8f00fb099ef7376f01&libraries=services"></script>
+                            //로컬 스토리지에서 데이터를 가져오기
+                            var kakaoMapData = JSON.parse(localStorage.getItem('kakaoMapData'));
+                            console.log(kakaoMapData);
+
+                            //데이터를 이용하여 카카오 지도에 표시하는 함수
+                            function displayMapWithData() {
+                                var origin = new kakao.maps.LatLng(kakaoMapData.routes[0].summary.origin.y, kakaoMapData.routes[0].summary.origin.x);
+                                var destination = new kakao.maps.LatLng(kakaoMapData.routes[0].summary.destination.y, kakaoMapData.routes[0].summary.destination.x);
+
+                                //출발지와 도착지의 위치 평균값 계산식
+                                var avgLat = (origin.getLat() + destination.getLat()) / 2;
+                                var avgLng = (origin.getLng() + destination.getLng()) / 2;
+
+                                var center = new kakao.maps.LatLng(avgLat, avgLng);
+
+                                //지도 생성
+                                var map = new kakao.maps.Map(document.getElementById('map'), {
+                                    center: center,
+                                    level: 7
+                                });
+
+                                //출발지 마커
+                                var markerOrigin = new kakao.maps.Marker({
+                                    map: map,
+                                    position: origin,
+                                    title: '출발지'
+                                });
+
+                                //도착지 마커
+                                var markerDestination = new kakao.maps.Marker({
+                                    map: map,
+                                    position: destination,
+                                    title: '도착지'
+                                });
+
+                                //출발지와 도착지를 연결
+                                var linePath = [origin, destination];
+                                var line = new kakao.maps.Polyline({
+                                    path: linePath,
+                                    strokeWeight: 3,
+                                    strokeColor: '#FF0000',
+                                    strokeOpacity: 0.7,
+                                    strokeStyle: 'solid'
+                                });
+                                line.setMap(map);
+                            }
+
+                            //지도 표시
+                            window.onload = function() {
+                                displayMapWithData();
+                            };
+                        </script>
+                    </div>
+                </div>
+
+
+                <!-- 전  -->
+                <div id="beforeDiv" class="col-lg-3 about-text wow fadeInUp" data-wow-delay="0.3s" style=" margin: auto;">
+                    <h6 class="text-secondary text-uppercase mb-3">배송지역 확인</h6>
+                    <h2 class="mb-2">맞으면 확인을 눌러주세요!</h2>
+                    <a href="javascript:void(0);" class="btn btn-primary mb-3" onclick="openModal()"> 확인</a>
+                    <a href="/requestService" class="btn btn-danger mb-3"> 재입력</a>
                     <script>
-                        //지도 스크립트 처리
-
-                        //로컬 스토리지에서 데이터를 가져오기
-                        var kakaoMapData = JSON.parse(localStorage.getItem('kakaoMapData'));
-                        console.log(kakaoMapData);
-
-                        //데이터를 이용하여 카카오 지도에 표시하는 함수
-                        function displayMapWithData() {
-                            var origin = new kakao.maps.LatLng(kakaoMapData.routes[0].summary.origin.y, kakaoMapData.routes[0].summary.origin.x);
-                            var destination = new kakao.maps.LatLng(kakaoMapData.routes[0].summary.destination.y, kakaoMapData.routes[0].summary.destination.x);
-
-                            //출발지와 도착지의 위치 평균값 계산식
-                            var avgLat = (origin.getLat() + destination.getLat()) / 2;
-                            var avgLng = (origin.getLng() + destination.getLng()) / 2;
-
-                            var center = new kakao.maps.LatLng(avgLat, avgLng);
-
-                            //지도 생성
-                            var map = new kakao.maps.Map(document.getElementById('map'), {
-                                center: center,
-                                level: 7
-                            });
-
-                            //출발지 마커
-                            var markerOrigin = new kakao.maps.Marker({
-                                map: map,
-                                position: origin,
-                                title: '출발지'
-                            });
-
-                            //도착지 마커
-                            var markerDestination = new kakao.maps.Marker({
-                                map: map,
-                                position: destination,
-                                title: '도착지'
-                            });
-
-                            //출발지와 도착지를 연결
-                            var linePath = [origin, destination];
-                            var line = new kakao.maps.Polyline({
-                                path: linePath,
-                                strokeWeight: 3,
-                                strokeColor: '#FF0000',
-                                strokeOpacity: 0.7,
-                                strokeStyle: 'solid'
-                            });
-                            line.setMap(map);
+                        function openModal() {
+                            $('#modal').modal('show');
                         }
-
-                        //지도 표시
-                        window.onload = function() {
-                            displayMapWithData();
-                        };
                     </script>
                 </div>
-            </div>
+
+                <!-- 후 -->
+                <div id="afterDiv" class="col-lg-3 about-text" style="display: none; margin: auto;">
+                    <h2 class="mb-2">작성중..</h2>
+                </div>
 
 
-            <!-- 전  -->
-            <div id="beforeDiv" class="col-lg-3 about-text wow fadeInUp" data-wow-delay="0.3s" style=" margin: auto;">
-                <h6 class="text-secondary text-uppercase mb-3">배송지역 확인</h6>
-                <h2 class="mb-2">맞으면 확인을 눌러주세요!</h2>
-                <a href="javascript:void(0);" class="btn btn-primary mb-3" onclick="openModal()"> 확인</a>
-                <a href="/requestService" class="btn btn-danger mb-3"> 재입력</a>
-                <script>
-                    function openModal() {
-                        $('#modal').modal('show');
-                    }
-                </script>
-            </div>
+                <!-- 배차 모달 -->
+                <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="dispatchingModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="display: flex;">
 
-            <!-- 후 -->
-            <div id="afterDiv" class="col-lg-3 about-text" style="display: none; margin: auto;">
-                <h2 class="mb-2">작성중..</h2>
-            </div>
-
-
-            <!-- 배차 모달 -->
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="dispatchingModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="display: flex;">
-
-                    <!-- 왼쪽 -->
-                    <div class="modal-content" style="flex: 1;">
-                        <div class="modal-header">
-                            <h5 class="modal-title">배차선택</h5>
-                        </div>
-
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <h5>차량 선택</h5>
-                                <div class="list-group" style="max-height: 400px;">
-                                    <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"
-                                                    id="dropdownMenu" style="width: 100%; background: rgb(128,128,128); border: none;">
-                                                배차 선택
-                                            </button>
-                                            <ul class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMenu">
-                                                <li><a class="dropdown-item" onclick="showNormal(); changeButtonText('일반 배송');">일반 배송</a></li>
-                                                <li><a class="dropdown-item" onclick="showQuick(); changeButtonText('퀵 배송');">퀵 배송</a></li>
-                                                <li><a class="dropdown-item" onclick="showHuge(); changeButtonText('대형 배송');">대형 배송</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" id="normalDiv" style="display: none;">
-                                <div>
-                                    <div class="service-item" style="border: black;">
-                                        <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/1t카고.png" alt=""
-                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('1t 카고 운송');">
-                                        </div>
-                                    </div>
-                                    <div class="service-item" style="border: black;">
-                                        <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/1t탑차.png" alt=""
-                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('1t 탑차 운송');">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" id="quickDiv" style="display: none;">
-                                <div>
-                                    <div class="service-item" style="border: black;">
-                                        <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/bike.png" alt=""
-                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('오토바이 운송');">
-                                        </div>
-                                    </div>
-                                    <div class="service-item" style="border: black;">
-                                        <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/다마스.png" alt=""
-                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('다마스 운송');">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" id="hugeDiv" style="display: none;">
-                                <div>
-                                    <div class="service-item" style="border: black;">
-                                        <div class="overflow-hidden mb-4">
-                                            <img class="img-fluid" src="/img/vehicle/trailer.png" alt=""
-                                                 style="max-width: 100%; height: auto;" onclick="changeCarType('트레일러 운송');">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="carType" class="form-label">차량</label>
-                                <input type="text" class="form-control" id="carType" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="price" class="form-label">금액</label>
-                                <input type="text" class="form-control" id="price" readonly>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 오른쪽 -->
-                    <div style="display: flex; flex-direction: column;">
+                        <!-- 왼쪽 -->
                         <div class="modal-content" style="flex: 1;">
                             <div class="modal-header">
-                                <h5 class="modal-title">배송 확인</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title">배차선택</h5>
                             </div>
+
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="distance" class="form-label">도착지까지의 거리(미터)</label>
-                                    <input type="text" class="form-control" id="distance" readonly>
+                                    <h5>차량 선택</h5>
+                                    <div class="list-group" style="max-height: 400px;">
+                                        <div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"
+                                                        id="dropdownMenu" style="width: 100%; background: rgb(128,128,128); border: none;">
+                                                    배차 선택
+                                                </button>
+                                                <ul class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMenu">
+                                                    <li><a class="dropdown-item" onclick="showNormal(); changeButtonText('일반 배송');">일반 배송</a></li>
+                                                    <li><a class="dropdown-item" onclick="showQuick(); changeButtonText('퀵 배송');">퀵 배송</a></li>
+                                                    <li><a class="dropdown-item" onclick="showHuge(); changeButtonText('대형 배송');">대형 배송</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="normalDiv" style="display: none;">
+                                    <div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/1t카고.png" alt=""
+                                                     style="max-width: 100%; height: auto;" onclick="changeCarType('1t 카고 운송');">
+                                            </div>
+                                        </div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/1t탑차.png" alt=""
+                                                     style="max-width: 100%; height: auto;" onclick="changeCarType('1t 탑차 운송');">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="quickDiv" style="display: none;">
+                                    <div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/bike.png" alt=""
+                                                     style="max-width: 100%; height: auto;" onclick="changeCarType('오토바이 운송');">
+                                            </div>
+                                        </div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/다마스.png" alt=""
+                                                     style="max-width: 100%; height: auto;" onclick="changeCarType('다마스 운송');">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3" id="hugeDiv" style="display: none;">
+                                    <div>
+                                        <div class="service-item" style="border: black;">
+                                            <div class="overflow-hidden mb-4">
+                                                <img class="img-fluid" src="/img/vehicle/trailer.png" alt=""
+                                                     style="max-width: 100%; height: auto;" onclick="changeCarType('트레일러 운송');">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="duration" class="form-label">예상시간(분)</label>
-                                    <input type="text" class="form-control" id="duration" readonly>
+                                    <label for="carType" class="form-label">차량</label>
+                                    <input type="text" class="form-control" id="carType" readonly>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="toll" class="form-label">통행요금 추가비용(원)</label>
-                                    <input type="text" class="form-control" id="toll" readonly>
+                                    <label for="price" class="form-label">금액</label>
+                                    <input type="text" class="form-control" id="price" readonly>
                                 </div>
                             </div>
+
                         </div>
 
-                        <div class="modal-content" style="flex: 1;">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="deliveryAddress" class="form-label">배송 주소</label>
-                                    <input type="text" class="form-control" id="deliveryAddress" readonly>
+                        <!-- 오른쪽 -->
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="modal-content" style="flex: 1;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">배송 확인</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="deliveryDate" class="form-label">배송신청일</label>
-                                    <input type="text" class="form-control" id="deliveryDate" readonly>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="distance" class="form-label">도착지까지의 거리(미터)</label>
+                                        <input type="text" class="form-control" id="distance" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="duration" class="form-label">예상시간(분)</label>
+                                        <input type="text" class="form-control" id="duration" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="toll" class="form-label">통행요금 추가비용(원)</label>
+                                        <input type="text" class="form-control" id="toll" readonly>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" style="width: 100%;" onclick="newOrder();">확인</button>
+                            </div>
 
+                            <div class="modal-content" style="flex: 1;">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="deliveryAddress" class="form-label">배송 주소</label>
+                                        <input type="text" class="form-control" id="deliveryAddress" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="deliveryDate" class="form-label">배송신청일</label>
+                                        <input type="text" class="form-control" id="deliveryDate" readonly>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%;" onclick="newOrder();">확인</button>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <script>
-                function newOrder(){
-                    var carType = document.getElementById("carType").value;
-                    var price = document.getElementById("price").value;
-                    var distance = document.getElementById("distance").value;
-                    var duration = document.getElementById("duration").value;
-                    var toll = document.getElementById("toll").value;
-                    var deliveryAddress = document.getElementById("deliveryAddress").value;
-                    var deliveryDate = document.getElementById("deliveryDate").value;
+                <script>
+                    function newOrder(){
+                        var carType = document.getElementById("carType").value;
+                        var price = document.getElementById("price").value;
+                        var distance = document.getElementById("distance").value;
+                        var duration = document.getElementById("duration").value;
+                        var toll = document.getElementById("toll").value;
+                        var deliveryAddress = document.getElementById("deliveryAddress").value;
+                        var deliveryDate = document.getElementById("deliveryDate").value;
 
-                    var data = {
-                        carType: carType,
-                        price: price,
-                        distance: distance,
-                        duration: duration,
-                        toll: toll,
-                        deliveryAddress: deliveryAddress,
-                        deliveryDate: deliveryDate
+                        var data = {
+                            carType: carType,
+                            price: price,
+                            distance: distance,
+                            duration: duration,
+                            toll: toll,
+                            deliveryAddress: deliveryAddress,
+                            deliveryDate: deliveryDate
+                        };
+
+                        //form 대신 post요청 415오류 피하기
+                        fetch('/requestComplete', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('네트워크 상태가 좋지 않습니다. 다시 시도해주세요.');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('Success:', data);
+                                // window.location.href = '/requestComplete.html';
+                                window.location.href = '/requestComplete';
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert(error.message);
+                            });
+                    }
+
+                </script>
+
+                <script>
+                    //목록 누르면 해당 텍스트로 변경
+                    function changeButtonText(text) {
+                        document.getElementById('dropdownMenu').innerText = text;
+                    }
+
+                    //드롭다운 맞춰서 DIV보여주기
+                    function showNormal(){
+                        $('#normalDiv').show();
+                        $('#quickDiv').hide();
+                        $('#hugeDiv').hide();
+                    }
+                    function showQuick(){
+                        $('#normalDiv').hide();
+                        $('#quickDiv').show();
+                        $('#hugeDiv').hide();
+                    }
+                    function showHuge(){
+                        $('#normalDiv').hide();
+                        $('#quickDiv').hide();
+                        $('#hugeDiv').show();
+                    }
+                </script>
+
+                <script>
+
+                    const carPrices = {
+                        '1t 카고 운송': 100000,
+                        '1t 탑차 운송': 120000,
+                        '오토바이 운송': 50000,
+                        '다마스 운송': 80000,
+                        '트레일러 운송': 200000
                     };
 
-                    //form 대신 post요청 415오류 피하기
-                    fetch('/requestComplete', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('네트워크 상태가 좋지 않습니다. 다시 시도해주세요.');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log('Success:', data);
-                            // window.location.href = '/requestComplete.html';
-                            window.location.href = '/requestComplete';
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert(error.message);
-                        });
-                }
+                    //이미지 클릭시 차량이름이랑 금액 설정
+                    function changeCarType(text){
+                        document.getElementById('carType').value = text;
+                        document.getElementById('price').value = paying(text);
+                    }
 
-            </script>
+                    // 비용계산
+                    function paying(text){
+                        const price = carPrices[text] || 0;
+                        return price.toLocaleString();
+                    }
 
-            <script>
-                //목록 누르면 해당 텍스트로 변경
-                function changeButtonText(text) {
-                    document.getElementById('dropdownMenu').innerText = text;
-                }
+                </script>
 
-                //드롭다운 맞춰서 DIV보여주기
-                function showNormal(){
-                    $('#normalDiv').show();
-                    $('#quickDiv').hide();
-                    $('#hugeDiv').hide();
-                }
-                function showQuick(){
-                    $('#normalDiv').hide();
-                    $('#quickDiv').show();
-                    $('#hugeDiv').hide();
-                }
-                function showHuge(){
-                    $('#normalDiv').hide();
-                    $('#quickDiv').hide();
-                    $('#hugeDiv').show();
-                }
-            </script>
+                <script>
+                    //모달 스크립트 처리
 
-            <script>
+                    //카카오맵데이터에서 데이터 주소값 가져오기 (도착지)
+                    var address = kakaoMapData.address;
+                    var addressDetail = kakaoMapData.addressDetail;
+                    var addressAll = address + ' ' + addressDetail;
+                    console.log(addressAll);
 
-                const carPrices = {
-                    '1t 카고 운송': 100000,
-                    '1t 탑차 운송': 120000,
-                    '오토바이 운송': 50000,
-                    '다마스 운송': 80000,
-                    '트레일러 운송': 200000
-                };
+                    document.getElementById('deliveryAddress').value = addressAll;
 
-                //이미지 클릭시 차량이름이랑 금액 설정
-                function changeCarType(text){
-                    document.getElementById('carType').value = text;
-                    document.getElementById('price').value = paying(text);
-                }
+                    // 현재 날짜, 시간 넣기
+                    var currentDate = new Date();
+                    var formattedDate = currentDate.toISOString().slice(0, 10);
+                    console.log(formattedDate);
+                    document.getElementById('deliveryDate').value = formattedDate;
 
-                // 비용계산
-                function paying(text){
-                    const price = carPrices[text] || 0;
-                    return price.toLocaleString();
-                }
+                    //길찾기 측정 정보 가져오기
+                    var result = kakaoMapData.routes[0].summary;
 
-            </script>
-
-            <script>
-                //모달 스크립트 처리
-
-                //카카오맵데이터에서 데이터 주소값 가져오기 (도착지)
-                var address = kakaoMapData.address;
-                var addressDetail = kakaoMapData.addressDetail;
-                var addressAll = address + ' ' + addressDetail;
-                console.log(addressAll);
-
-                document.getElementById('deliveryAddress').value = addressAll;
-
-                // 현재 날짜, 시간 넣기
-                var currentDate = new Date();
-                var formattedDate = currentDate.toISOString().slice(0, 10);
-                console.log(formattedDate);
-                document.getElementById('deliveryDate').value = formattedDate;
-
-                //길찾기 측정 정보 가져오기
-                var result = kakaoMapData.routes[0].summary;
-
-                var distance = result.distance; //직선거리
-                console.log('거리 : ',distance,'m');
-                document.getElementById('distance').value = distance;
+                    var distance = result.distance; //직선거리
+                    console.log('거리 : ',distance,'m');
+                    document.getElementById('distance').value = distance;
 
 
-                var duration = Math.round((result.duration)/60); //걸리는 시간
-                console.log('걸리는시간 : ', duration,'분');
-                document.getElementById('duration').value = duration;
+                    var duration = Math.round((result.duration)/60); //걸리는 시간
+                    console.log('걸리는시간 : ', duration,'분');
+                    document.getElementById('duration').value = duration;
 
-                var toll = result.fare.toll;    //통행요금
-                console.log('통행요금 : ', toll,'원');
-                document.getElementById('toll').value = toll;
+                    var toll = result.fare.toll;    //통행요금
+                    console.log('통행요금 : ', toll,'원');
+                    document.getElementById('toll').value = toll;
 
-            </script>
+                </script>
 
 
 
 
+            </div>
         </div>
     </div>
-</div>
 
 
 
 
-<!-- Service End -->
+    <!-- Service End -->
 
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-6 col-md-6">
-                <img src="img/logo_white1.png" alt="" style="width: 100%; height: 100%;">
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">주소</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-2"></i>강서구, 서울시</p>
-                <p class="mb-2"><i class="fa fa-envelope me-2"></i>heotjoeun@naver.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Services</h4>
-                <a class="btn btn-link" href="/normalDelivery">일반 운송</a>
-                <a class="btn btn-link" href="/quickDelivery">퀵 배송</a>
-                <a class="btn btn-link" href="/hugeDelivery">대형 운송</a>
-                <a class="btn btn-link" id="backLinkFooter" href="#">기타 운송</a>
-            </div>
-
-        </div>
-    </div>
-    <div class="container">
-        <div class="copyright">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">HEOLOGISTICS</a>, All Right Reserved.
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-6 col-md-6">
+                    <img src="img/logo_white1.png" alt="" style="width: 100%; height: 100%;">
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a>2024</a>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">주소</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-2"></i>강서구, 서울시</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-2"></i>heotjoeun@naver.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="/normalDelivery">일반 운송</a>
+                    <a class="btn btn-link" href="/quickDelivery">퀵 배송</a>
+                    <a class="btn btn-link" href="/hugeDelivery">대형 운송</a>
+                    <a class="btn btn-link" id="backLinkFooter" href="#">기타 운송</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">HEOLOGISTICS</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a>2024</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!-- Footer End -->
 
 
 
