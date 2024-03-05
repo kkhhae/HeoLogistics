@@ -1,6 +1,5 @@
 package com.heologistics.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,14 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class User {
+public class Receipt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userNumber;
+    private int receiptNumber;
 
-    private String userName;
-    private int userAge;
-    private String userAddress;
-
+    private String carType;
+    private String price;
+    private String distance;
+    private String deliveryAddress;
+    private String deleveryDate;
 }
