@@ -43,7 +43,8 @@ IntelliJ
 
 
 신청페이지 - 거리, 차량 지정<br>
-![신청페이지](https://github.com/kkhhae/HeoLogistics/assets/145322792/158cecca-f605-4f3e-8f56-b75a15372168)
+![신청페이지](https://github.com/kkhhae/HeoLogistics/assets/145322792/f56dce5e-4d08-46a0-8f90-5a2e52f5344c)
+
 
 
 고객센터페이지 - 문의, 목록
