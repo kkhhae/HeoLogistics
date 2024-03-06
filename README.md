@@ -46,16 +46,8 @@ IntelliJ
 ![신청페이지](https://github.com/kkhhae/HeoLogistics/assets/145322792/f56dce5e-4d08-46a0-8f90-5a2e52f5344c)
 
 
-
 고객센터페이지 - 문의, 목록
 <img width="1440" alt="문의목록" src="https://github.com/kkhhae/HeoLogistics/assets/145322792/16bee217-2527-489e-84b1-93243c9ed10e">
 <img width="1440" alt="문의신청" src="https://github.com/kkhhae/HeoLogistics/assets/145322792/6718c1f7-3b7a-4e93-9d54-409396180c4a">
-
-
-
----
-### 개발 관련 문서
-프로젝트 폴더 구조
-
 
 
