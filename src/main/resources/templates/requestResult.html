@@ -297,8 +297,16 @@
                         </div>
                     </div>
                 </div>
+
                 <script>
-                    function newOrder(){
+
+
+                </script>
+
+
+                <script>
+                    function newOrder() {
+
                         var carType = document.getElementById("carType").value;
                         var price = document.getElementById("price").value;
                         var distance = document.getElementById("distance").value;
@@ -317,7 +325,6 @@
                             deliveryDate: deliveryDate
                         };
 
-                        //form 대신 post요청 415오류 피하기
                         fetch('/requestComplete', {
                             method: 'POST',
                             headers: {
@@ -333,15 +340,15 @@
                             })
                             .then(data => {
                                 console.log('Success:', data);
-                                // window.location.href = '/requestComplete.html';
-                                window.location.href = '/requestComplete';
+
+                                // 다음 페이지로 이동합니다.
+                                window.location.href = '/requestComplete' + '?' + new URLSearchParams(data).toString();
                             })
                             .catch(error => {
                                 console.error('Error:', error);
                                 alert(error.message);
                             });
                     }
-
                 </script>
 
                 <script>
