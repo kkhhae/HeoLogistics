@@ -35,15 +35,15 @@ IntelliJ
 ---
 ### 프로젝트 시연
 
-메인페이지
+메인페이지<br>
+![메인페이지](https://github.com/kkhhae/HeoLogistics/assets/145322792/3425a791-b53d-4665-936d-9a5c6067f6a2)
+
+운송페이지 - 일반 운송, 퀵배송, 대형 운송, 기타 운송 등<br>
+![운송페이지](https://github.com/kkhhae/HeoLogistics/assets/145322792/58dea9f7-83a3-42cf-bacb-e8f86093dcf3)
 
 
-
-운송페이지 - 일반 운송, 퀵배송, 대형 운송, 기타 운송 등
-
-
-
-지도페이지 - 거리, 차량 지정
+신청페이지 - 거리, 차량 지정<br>
+![신청페이지](https://github.com/kkhhae/HeoLogistics/assets/145322792/158cecca-f605-4f3e-8f56-b75a15372168)
 
 
 고객센터페이지 - 문의, 목록
