@@ -8,7 +8,7 @@
 
 ---
 ### 기획 의도
-<span style="border 1px solid #EAEAEA">강남역 지점을 기준으로 거리비례 계산 및 차량 배차선택하는 운송 시스템입니다.</span>
+<span style="border 1px solid #EAEAEA">업체 지점을 기준으로 거리비례 계산 및 차량 배차선택하는 운송 시스템입니다.</span>
 
 ---
 ### 핵심 기능
